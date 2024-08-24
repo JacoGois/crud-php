@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Database\DatabaseManager;
 use App\Repository\RoomRepository;
 
 final class RoomController extends AbstractController
 {
     private RoomRepository $roomRepository;
 
-    public function __construct()
+    public function __construct(DatabaseManager $dbManager)
     {
-        $this->roomRepository = new RoomRepository(parent::mySqlConnection());
+        $this->roomRepository = new RoomRepository($dbManager->getConnection());
     }
 
     public function index(): void

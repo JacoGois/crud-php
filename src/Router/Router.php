@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Router;
 
+use App\Database\DatabaseManager;
+
 class Router
 {
     private array $routes;
@@ -21,8 +23,10 @@ class Router
             return;
         }
 
+        $dbManager = new DatabaseManager();
+
         list($controller, $method) = $this->routes[$url];
 
-        return (new $controller())->$method();
+        return (new $controller($dbManager))->$method();
     }
 }

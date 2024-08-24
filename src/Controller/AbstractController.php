@@ -15,10 +15,6 @@ abstract class AbstractController
         include_once "../views/_partials/footer.php";
     }
 
-    public function mySqlConnection(): mixed {
-       return new \PDO('mysql:host=pure-php-mysql;dbname=db_name', 'user', 'password');
-    }
-    
     public function redirect(string $url) : void
     {
         header("location: {$url}");
